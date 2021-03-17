@@ -792,6 +792,8 @@ const SM = (function () {
 			}
 
 		}
+		
+		this.DB = null;
 	
 		initDB() {
 			const DBconfig = {
@@ -1234,7 +1236,7 @@ const SM = (function () {
 			
 			this.getDBvals();
 			
-			if (this.DBObj[`player_${this.player.name_low}`] in this.DBObj && this.DBObj[`player_${this.player.name_low}`].pHiScore < this.player.hiScore) {
+			if (this.DBObj[`player_${this.player.name_low}`].pHiScore < this.player.hiScore) {
 				this.DB.ref("players/"+ `player_${this.player.name_low}`).update({
 					pHiScore: this.player.hiScore
 				}).then(function () {
