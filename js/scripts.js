@@ -790,10 +790,10 @@ const SM = (function () {
 				"logOutConfirm": "You are going to logout. Please confirm.",
 				"outOfCredits": "Not enough credits to continue. You can start a new game."
 			}
+			
+			this.DB = null;
 
 		}
-		
-		this.DB = null;
 	
 		initDB() {
 			const DBconfig = {
@@ -898,7 +898,7 @@ const SM = (function () {
 						
 			if (this.DBObj[`player_${this.player.name_low}`]
 				&& playerName === this.DBObj[`player_${this.player.name_low}`].pName
-				&& this.player.pass === this.DBObj[`player_${this.player.name_low}`].pPassword) {
+				&& playerPassword === this.DBObj[`player_${this.player.name_low}`].pPassword) {
 				
 				this.player.loggedIn = true;
 				this.view.renderPlayerName(this.DBObj[`player_${this.player.name_low}`].pName);
@@ -924,7 +924,7 @@ const SM = (function () {
 			
 			this.player.name_low = playerName.toLowerCase();
 			
-			if (this.DBObj[`player_${this.player.name_low }`] in this.DBObj) {
+			if (!(this.DBObj[`player_${this.player.name_low }`] in this.DBObj)) {
 							
 				this.player.name = playerName;			
 				this.player.pass = playerPassword;
